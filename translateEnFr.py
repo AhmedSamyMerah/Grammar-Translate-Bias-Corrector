@@ -1,7 +1,16 @@
 from google.cloud import translate
 import spacy
+import unidecode
+import unicodedata
+import numpy
 
 nlp = spacy.load("fr_core_news_md")
+
+def remove_accents(input_str):
+    nfkd_form = unicodedata.normalize('NFKD', input_str)
+    only_ascii = nfkd_form.encode('ASCII', 'ignore')
+    return only_ascii
+
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
@@ -24,13 +33,29 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         }
     )
 
-    doc = nlp(str(response.translations))
+    trString = str(response.translations)
+    cleanStr = trString[19:-3]
+    
+    aigu = "\\303\\251"
 
-    for token in doc:
-        print(token.text, '\t', token.pos_, '\t', token.lemma_)
+    cleanStr = cleanStr.replace(aigu, aigu.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+    # for c in cleanStr:
+    #     if(aigu in cleanStr):
+    #        cleanStr.replace(aigu, aigu.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+
+    print(cleanStr)
+    
+    #doc = nlp(cleanStr)
+
+    # doc = nlp(str(response.translations))
+
+    #for token in doc:
+        #print(token.text)#, '\t', token.pos_, '\t', token.lemma_)
 
     # Display the translation for each input text provided
-    #for translation in response.translations:
-      # print("Translated text: {}".format(translation.translated_text))
 
-translate_text(text="The boss ran on the road. She was terrible", project_id="ancient-lattice-288217")
+    # for translation in response.translations:
+    #    print("Translated text: {}".format(translation.translated_text))
+
+
+translate_text(text="The guardian splashed the car on the road. She is crazy.", project_id="ancient-lattice-288217")
