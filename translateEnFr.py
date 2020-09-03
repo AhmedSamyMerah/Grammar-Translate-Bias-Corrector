@@ -6,11 +6,6 @@ import numpy
 
 nlp = spacy.load("fr_core_news_md")
 
-def remove_accents(input_str):
-    nfkd_form = unicodedata.normalize('NFKD', input_str)
-    only_ascii = nfkd_form.encode('ASCII', 'ignore')
-    return only_ascii
-
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
@@ -33,24 +28,68 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         }
     )
 
+    #Converting the Google object into a string
     trString = str(response.translations)
+
+    #Cleaning the extra characters
     cleanStr = trString[19:-3]
     
-    aigu = "\\303\\251"
+    #E accent values to be replaced
+    graveE = "\\303\\250"
+    aiguE = "\\303\\251"
+    circE = "\\303\\252"
+    tremaE = "\\303\\253"
+    
+    #Slash after apostrophe removal
+    ap = "\\"
 
-    cleanStr = cleanStr.replace(aigu, aigu.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
-    # for c in cleanStr:
-    #     if(aigu in cleanStr):
-    #        cleanStr.replace(aigu, aigu.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+    #A accents
+    graveA = "\\303\\240"
+    circA = "\\303\\242"
+
+    #U accents
+    graveU = "\\303\\271"
+    circU = "\\303\\273"
+    tremaU = "\\303\\274"
+
+    #I accents
+    circI = "\\303\\256"
+    tremaI = "\\303\\257"
+    
+    #O accents
+    circO = "\\303\\264"
+
+    #C accents
+    cedi = "\\303\\247"
+
+    if(aiguE in cleanStr or graveE in cleanStr or circE in cleanStr or ap in cleanStr or graveA in cleanStr or circA in cleanStr or graveU in cleanStr or circU in cleanStr or tremaU in cleanStr or circI in cleanStr or tremaI in cleanStr or circO in cleanStr or cedi in cleanStr or tremaE in cleanStr):
+        # e decoding
+        cleanStr = cleanStr.replace(aiguE, aiguE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(graveE, graveE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(circE, circE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(tremaE, tremaE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        # apostrophe decoding
+        #cleanStr = cleanStr.replace(ap, "")
+        # a decoding
+        cleanStr = cleanStr.replace(graveA, graveA.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(circA, circA.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        # u decoding
+        cleanStr = cleanStr.replace(graveU, graveU.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(circU, circU.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(tremaU, tremaU.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        # i decoding
+        cleanStr = cleanStr.replace(circI, circI.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(tremaI, tremaI.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        # o decoding
+        cleanStr = cleanStr.replace(circO, circO.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        cleanStr = cleanStr.replace(cedi, cedi.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
 
     print(cleanStr)
     
-    #doc = nlp(cleanStr)
+    doc = nlp(cleanStr)
 
-    # doc = nlp(str(response.translations))
-
-    #for token in doc:
-        #print(token.text)#, '\t', token.pos_, '\t', token.lemma_)
+    for token in doc:
+        print(token.text)#, '\t', token.pos_, '\t', token.lemma_)
 
     # Display the translation for each input text provided
 
@@ -58,4 +97,4 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="The guardian splashed the car on the road. She is crazy.", project_id="ancient-lattice-288217")
+translate_text(text="beside", project_id="ancient-lattice-288217")
