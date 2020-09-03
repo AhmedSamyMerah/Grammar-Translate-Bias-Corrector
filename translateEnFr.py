@@ -1,4 +1,7 @@
 from google.cloud import translate
+import spacy
+
+nlp = spacy.load("fr_core_news_md")
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
