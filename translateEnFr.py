@@ -24,9 +24,13 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         }
     )
 
+    doc = nlp(str(response.translations))
+
+    for token in doc:
+        print(token.text, '\t', token.pos_, '\t', token.lemma_)
 
     # Display the translation for each input text provided
-    for translation in response.translations:
-       print("Translated text: {}".format(translation.translated_text))
+    #for translation in response.translations:
+      # print("Translated text: {}".format(translation.translated_text))
 
 translate_text(text="The boss ran on the road. She was terrible", project_id="ancient-lattice-288217")
