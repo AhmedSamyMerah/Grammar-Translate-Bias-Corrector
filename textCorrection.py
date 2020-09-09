@@ -52,5 +52,21 @@ def gender_corrector(trText):
                             s1 = s1.replace(dn, sn)
                     continue
 
+                    if(sn[-1:] == 'e'):
+                        sn = sn.replace('e', 'esse')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+                
+                    if(sn[-2:] == 'er'):
+                        sn = sn.replace('er', 'ère')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
 
     print(s1,s2)
