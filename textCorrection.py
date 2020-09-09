@@ -41,8 +41,16 @@ def gender_corrector(trText):
                         hv = nlp(sn)
                     for v in hv:
                         if(v.has_vector):
-                            print('!!!')
-                            s1 = s1.replace(dn, sn)
-                            print('issa noun', sn)
+                            s1 = s1.replace(dn, sn) 
                     continue
+                    
+                    if(sn[-2:] == 'in'):
+                        sn = sn.replace('in', 'ine')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+
     print(s1,s2)
