@@ -1,11 +1,10 @@
 from google.cloud import translate
 import spacy
-import unidecode
-import unicodedata
-import numpy
+#import unidecode
+#import unicodedata
+#import numpy
 
 nlp = spacy.load("fr_core_news_md")
-
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
@@ -32,7 +31,7 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     trString = str(response.translations)
 
     #Cleaning the extra characters
-    cleanStr = trString[19:-3]
+    cleanStr = trString[19:-3].lower()
     
     #E accent values to be replaced
     graveE = "\\303\\250"
@@ -68,8 +67,6 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         cleanStr = cleanStr.replace(graveE, graveE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
         cleanStr = cleanStr.replace(circE, circE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
         cleanStr = cleanStr.replace(tremaE, tremaE.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
-        # apostrophe decoding
-        #cleanStr = cleanStr.replace(ap, "")
         # a decoding
         cleanStr = cleanStr.replace(graveA, graveA.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
         cleanStr = cleanStr.replace(circA, circA.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
@@ -83,13 +80,19 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         # o decoding
         cleanStr = cleanStr.replace(circO, circO.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
         cleanStr = cleanStr.replace(cedi, cedi.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf8'))
+        # apostrophe decoding
+        cleanStr = cleanStr.replace(ap, "")
 
     print(cleanStr)
     
     doc = nlp(cleanStr)
 
     for token in doc:
-        print(token.text)#, '\t', token.pos_, '\t', token.lemma_)
+        print(token.text, '\t', token.pos_, '\t', token.lemma_)
+
+    #Sentence print
+    # for sent in doc.sents:
+    #     print(sent)
 
     # Display the translation for each input text provided
 
@@ -97,4 +100,4 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="beside", project_id="ancient-lattice-288217")
+translate_text(text="The actor is good. She is nice.", project_id="ancient-lattice-288217")
