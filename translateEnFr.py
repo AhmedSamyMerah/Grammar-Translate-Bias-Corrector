@@ -84,7 +84,7 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
         # apostrophe decoding
         cleanStr = cleanStr.replace(ap, "")
 
-    print(cleanStr)
+    #print(cleanStr)
     
     #sends for processing
     gender_corrector(cleanStr)
@@ -104,4 +104,10 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="The actor is good. She is nice.", project_id="ancient-lattice-288217")
+translate_text(text="My boss is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="Your cousin is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="The master is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="His baker is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="This actor is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="This player is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="His dog is cool. she is calm", project_id="ancient-lattice-288217")
