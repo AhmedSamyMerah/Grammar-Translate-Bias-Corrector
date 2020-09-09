@@ -36,9 +36,11 @@ def gender_corrector(trText):
                     dn = str(n)
                     sn = str(n)
 
+                    #Noun endings check for replacement of suffix
                     if(sn[-2:] == 'on'):
                         sn = sn.replace('on', 'onne')
                         hv = nlp(sn)
+                        #Checks if replacement is valid by looking at Vocab
                         for v in hv:
                             if(v.has_vector):
                                 s1 = s1.replace(dn, sn) 
@@ -93,3 +95,19 @@ def gender_corrector(trText):
                         continue
 
     print(s1,s2)
+    
+    #New sentence after changes if occured
+    ns = s1 + ' ' + s2
+    
+    #Determiners and Articles fix
+    
+    #Tokenization of new sentence
+    nounCorrectedDoc = nlp(ns)
+    
+    #new sentence breakdown
+    sents = list(nounCorrectedDoc.sents)
+    ds1 = sents[0]
+    ds2 = sents[1]
+    s1 = str(sents[0])
+    s2 = str(sents[1])
+    #print(s1, s2)
