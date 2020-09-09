@@ -86,7 +86,8 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
 
     print(cleanStr)
     
-
+    #sends for processing
+    gender_corrector(cleanStr)
 
     # doc = nlp(cleanStr)
 
