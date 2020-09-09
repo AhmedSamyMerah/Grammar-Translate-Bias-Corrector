@@ -1,10 +1,11 @@
 from google.cloud import translate
-import spacy
+from textCorrection import gender_corrector
+#import spacy
 #import unidecode
 #import unicodedata
 #import numpy
 
-nlp = spacy.load("fr_core_news_md")
+#nlp = spacy.load("fr_core_news_md")
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
@@ -85,10 +86,12 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
 
     print(cleanStr)
     
-    doc = nlp(cleanStr)
 
-    for token in doc:
-        print(token.text, '\t', token.pos_, '\t', token.lemma_)
+
+    # doc = nlp(cleanStr)
+
+    # for token in doc:
+    #     print(token.text, '\t', token.pos_, '\t', token.lemma_)
 
     #Sentence print
     # for sent in doc.sents:
