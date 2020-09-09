@@ -67,6 +67,21 @@ def gender_corrector(trText):
                         if(v.has_vector):
                             s1 = s1.replace(dn, sn)
                     continue
-
+                    
+                    if(sn[-4:] == 'teur'):
+                        sn = sn.replace('teur', 'trice')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+                
+                    if(sn[-3:] == 'eur'):
+                        sn = sn.replace('eur', 'euse')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
 
     print(s1,s2)
