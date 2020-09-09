@@ -110,4 +110,47 @@ def gender_corrector(trText):
     ds2 = sents[1]
     s1 = str(sents[0])
     s2 = str(sents[1])
-    #print(s1, s2)
+    
+
+    #checks gender of noun
+    for n in ds1:
+        if('NOUN' and 'Gender=Fem' in n.tag_):
+            #Replacement of possessive Determinents
+            for p in ds1:
+                index=p.i
+                dn = str(p)
+                sn = str(p)
+                    
+                if(sn == 'mon'):
+                    sn = sn.replace('mon', 'ma')
+                    s1 = s1.replace(dn, sn)
+
+                if(sn == 'ton'):
+                    sn = sn.replace('ton', 'ta')
+                    s1 = s1.replace(dn, sn)
+
+                if(sn == 'son'):
+                    sn = sn.replace('son', 'sa')
+                    s1 = s1.replace(dn, sn)
+
+            #Replacement of articles/determinents if noun gender is maculine
+            for d in ds1:     
+                if('DET' and 'Gender=Masc' in d.tag_):
+                    index=d.i
+                    dn = str(d)
+                    sn = str(d)
+                
+                if(sn == 'le'):
+                    sn = sn.replace('le', 'la')
+                    s1 = s1.replace(dn, sn)
+                    
+                if(sn == 'un'):
+                    sn = sn.replace('un', 'une')
+                    s1 = s1.replace(dn, sn)
+                
+                if(sn == 'ce'):
+                    sn = sn.replace('ce', 'cette')
+                    s1 = s1.replace(dn, sn)
+    
+    
+    print(s1,s2)
