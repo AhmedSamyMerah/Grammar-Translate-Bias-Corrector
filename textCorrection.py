@@ -84,4 +84,12 @@ def gender_corrector(trText):
                             s1 = s1.replace(dn, sn)
                     continue
 
+                    if(sn[-3:] == 'ien'):
+                        sn = sn.replace('ien', 'ienne')
+                        hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
     print(s1,s2)
