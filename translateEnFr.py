@@ -9,7 +9,7 @@ from textCorrection import gender_corrector
 
 def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     """Translating Text."""
-
+    
     client = translate.TranslationServiceClient()
 
     location = "global"
@@ -104,10 +104,13 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="My boss is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="Your cousin is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="The master is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="His baker is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="This actor is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="This player is cool. she is calm", project_id="ancient-lattice-288217")
-translate_text(text="His dog is cool. she is calm", project_id="ancient-lattice-288217")
+translate_text(text="My cousins are cool. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="My actors are cool. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="The actor are cool. she work ethic is good.", project_id="ancient-lattice-288217")
+
+# translate_text(text="Your cousin is cool. she is calm", project_id="ancient-lattice-288217")
+# # translate_text(text="The master is cool. she is calm", project_id="ancient-lattice-288217")
+# # translate_text(text="His baker is cool. she is calm", project_id="ancient-lattice-288217")
+# # translate_text(text="This actor is cool. she is calm", project_id="ancient-lattice-288217")
+# # translate_text(text="This player is cool. she is calm", project_id="ancient-lattice-288217")
+# # translate_text(text="His dog is cool. she is calm", project_id="ancient-lattice-288217")

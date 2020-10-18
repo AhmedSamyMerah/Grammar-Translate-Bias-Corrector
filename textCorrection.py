@@ -25,7 +25,7 @@ def gender_corrector(trText):
     hv= None
 
     #Pronoun check
-    if('elle' in s2):
+    if('elle' or 'sa' in s2):
         #Loop to check if a noun is masculine
         for n in ds1:
             if(n.pos_ == 'NOUN'):
@@ -94,7 +94,64 @@ def gender_corrector(trText):
                                 s1 = s1.replace(dn, sn)
                         continue
 
-    print(s1,s2)
+                #Plural endings
+                    if(sn[-3:] == 'ons'):
+                        sn = sn.replace('ons', 'onnes')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-3:] == 'ins'):
+                        sn = sn.replace('ins', 'ines')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'es'):
+                        sn = sn.replace('es', 'esses')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-3:] == 'ers'):
+                        sn = sn.replace('ers', 'ères')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+                    
+                    if(sn[-5:] == 'teurs'):
+                        sn = sn.replace('teurs', 'trices')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+                
+                    if(sn[-4:] == 'eurs'):
+                        sn = sn.replace('eurs', 'euses')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-4:] == 'iens'):
+                        sn = sn.replace('iens', 'iennes')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+    #print(s1,s2)
     
     #New sentence after changes if occured
     ns = s1 + ' ' + s2
