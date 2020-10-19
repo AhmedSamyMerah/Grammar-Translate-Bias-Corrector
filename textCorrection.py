@@ -1,5 +1,7 @@
 import spacy
+import spacy.lang.fr
 from spacy.tokenizer import Tokenizer
+from spacy.lookups import Lookups
 
 #Load large French model
 nlp = spacy.load("fr_core_news_lg")
@@ -209,5 +211,172 @@ def gender_corrector(trText):
                     sn = sn.replace('ce', 'cette')
                     s1 = s1.replace(dn, sn)
     
-    
-    print(s1,s2)
+            for a in ds1:
+                if('ADJ' and 'Gender=Masc' in a.tag_):
+                    #Replacement of singular adjective  
+                    index=a.i
+                    dn = str(a)
+                    sn = str(a)
+
+                    if(sn[-3:] == 'ien'):
+                        sn = sn.replace('ien', 'ienne')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue        
+
+                    if(sn[-3:] == 'eil'):
+                        sn = sn.replace('eil', 'eille')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue      
+
+                    if(sn[-3:] == 'eau'):
+                        sn = sn.replace('eau', 'elle')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue 
+
+                    if(sn[-3:] == 'eux'):
+                        sn = sn.replace('eux', 'eille')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'ai'):
+                        sn = sn.replace('ai', 'aie')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'on'):
+                        sn = sn.replace('on', 'onne')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'el'):
+                        sn = sn.replace('el', 'elle')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue  
+
+                    if(sn[-2:] == 'ul'):
+                        sn = sn.replace('ul', 'ulle')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'et'):
+                        sn = sn.replace('et', 'ette')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue 
+
+                    if(sn[-2:] == 'ot'):
+                        sn = sn.replace('ot', 'ote')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue   
+
+                    if(sn[-2:] == 'ou'):
+                        sn = sn.replace('ou', 'olle')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'er'):
+                        sn = sn.replace('er', 'ère')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 'c'):
+                        sn = sn.replace('c', 'che')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 'd'):
+                        sn = sn.replace('d', 'de')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 't'):
+                        sn = sn.replace('t', 'te')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 'i'):
+                        sn = sn.replace('i', 'ie')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 'u'):
+                        sn = sn.replace('u', 'ue')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 's'):
+                        sn = sn.replace('s', 'se')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue 
+
+                    if(sn[-1:] == 'x'):
+                        sn = sn.replace('x', 'se')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-1:] == 'f'):
+                        sn = sn.replace('f', 've')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+
+    print(s1 + ' ' + s2)

@@ -104,10 +104,12 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="My cousins are cool. she work ethic is good.", project_id="ancient-lattice-288217")
-translate_text(text="My actors are cool. she work ethic is good.", project_id="ancient-lattice-288217")
-translate_text(text="The actor are cool. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is nervous. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is light. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is heavy. she work ethic is good.", project_id="ancient-lattice-288217")
 
+#translate_text(text="My actors are cool. she work ethic is good.", project_id="ancient-lattice-288217")
+#translate_text(text="The actor are cool. she work ethic is good.", project_id="ancient-lattice-288217")
 # translate_text(text="Your cousin is cool. she is calm", project_id="ancient-lattice-288217")
 # # translate_text(text="The master is cool. she is calm", project_id="ancient-lattice-288217")
 # # translate_text(text="His baker is cool. she is calm", project_id="ancient-lattice-288217")
