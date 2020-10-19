@@ -87,7 +87,7 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #print(cleanStr)
     
     #sends for processing
-    gender_corrector(cleanStr)
+    gender_corrector(cleanStr, text)
 
     # doc = nlp(cleanStr)
 
@@ -104,9 +104,10 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="the boss is nervous. she work ethic is good.", project_id="ancient-lattice-288217")
-translate_text(text="the boss is light. she work ethic is good.", project_id="ancient-lattice-288217")
-translate_text(text="the boss is heavy. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is short. her work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the actor is provocative. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is important. she work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the boss is elegant. she work ethic is good.", project_id="ancient-lattice-288217")
 
 #translate_text(text="My actors are cool. she work ethic is good.", project_id="ancient-lattice-288217")
 #translate_text(text="The actor are cool. she work ethic is good.", project_id="ancient-lattice-288217")

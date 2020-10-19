@@ -5,12 +5,14 @@ from spacy.lookups import Lookups
 
 #Load large French model
 nlp = spacy.load("fr_core_news_lg")
+ennlp = spacy.load("en_core_web_sm")
 
 #Processing method
-def gender_corrector(trText):
+def gender_corrector(trText, orText):
     
     #Doc for processing original GT translation
     doc = nlp(trText)
+    docOr = ennlp(orText)
 
     #Sentence breakdown
     sents = list(doc.sents)
@@ -18,7 +20,12 @@ def gender_corrector(trText):
     ds2 = sents[1]
     s1 = str(sents[0])
     s2 = str(sents[1])
-    #print(s1, s2)
+    
+    enSents = list(docOr.sents)
+    denS1 = enSents[0]
+    denS2 = enSents[1]
+    ens1 = str(enSents[0])
+    ens2 = str(enSents[1])
 
     #Variables for token storing
     dn =None
@@ -27,7 +34,7 @@ def gender_corrector(trText):
     hv= None
 
     #Pronoun check
-    if('elle' or 'sa' in s2):
+    if(('elle' or 'sa' in s2) or ('her' in ens2)):
         #Loop to check if a noun is masculine
         for n in ds1:
             if(n.pos_ == 'NOUN'):
@@ -218,6 +225,14 @@ def gender_corrector(trText):
                     dn = str(a)
                     sn = str(a)
 
+                    if(sn[-4:] == 'teur'):
+                        sn = sn.replace('teur', 'trice')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+                    
                     if(sn[-3:] == 'ien'):
                         sn = sn.replace('ien', 'ienne')
                         hv = nlp(sn)
@@ -314,6 +329,30 @@ def gender_corrector(trText):
                                 s1 = s1.replace(dn, sn)
                         continue
 
+                    if(sn[-2:] == 'il'):
+                        sn = sn.replace('il', 'ille')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'it'):
+                        sn = sn.replace('it', 'ite')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-2:] == 'nt'):
+                        sn = sn.replace('nt', 'nte')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
                     if(sn[-1:] == 'c'):
                         sn = sn.replace('c', 'che')
                         hv = nlp(sn)
@@ -321,7 +360,7 @@ def gender_corrector(trText):
                             if(v.has_vector):
                                 s1 = s1.replace(dn, sn)
                         continue
-
+                    
                     if(sn[-1:] == 'd'):
                         sn = sn.replace('d', 'de')
                         hv = nlp(sn)
@@ -330,8 +369,8 @@ def gender_corrector(trText):
                                 s1 = s1.replace(dn, sn)
                         continue
 
-                    if(sn[-1:] == 't'):
-                        sn = sn.replace('t', 'te')
+                    if(sn[-1:] == 'é'):
+                        sn = sn.replace('é', 'ée')
                         hv = nlp(sn)
                         for v in hv:
                             if(v.has_vector):
@@ -377,6 +416,7 @@ def gender_corrector(trText):
                             if(v.has_vector):
                                 s1 = s1.replace(dn, sn)
                         continue
+
 
 
     print(s1 + ' ' + s2)
