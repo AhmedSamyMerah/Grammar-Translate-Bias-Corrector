@@ -37,128 +37,128 @@ def gender_corrector(trText, orText):
     if(('elle' or 'sa' in s2) or ('her' in ens2)):
         #Loop to check if a noun is masculine
         for n in ds1:
-            if(n.pos_ == 'NOUN'):
-                if('Gender=Masc' in n.tag_):
-                    #get index of token
-                    index=n.i
-                    #Stringify token
-                    dn = str(n)
-                    sn = str(n)
-
-                    #Noun endings check for replacement of suffix
-                    if(sn[-2:] == 'on'):
-                        sn = sn.replace('on', 'onne')
-                        hv = nlp(sn)
-                        #Checks if replacement is valid by looking at Vocab
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn) 
-                        continue
-                    
-                    if(sn[-2:] == 'in'):
-                        sn = sn.replace('in', 'ine')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                    if(sn[-1:] == 'e'):
-                        sn = sn.replace('e', 'esse')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+            if('NOUN' and 'Gender=Masc' in n.tag_):
                 
-                    if(sn[-2:] == 'er'):
-                        sn = sn.replace('er', 'ère')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+                #get index of token
+                index=n.i
+                #Stringify token
+                dn = str(n)
+                sn = str(n)
+
+                #Noun endings check for replacement of suffix
+                if(sn[-2:] == 'on'):
+                    sn = sn.replace('on', 'onne')
+                    hv = nlp(sn)
+                    #Checks if replacement is valid by looking at Vocab
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn) 
+                    continue
                     
-                    if(sn[-4:] == 'teur'):
-                        sn = sn.replace('teur', 'trice')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+                if(sn[-2:] == 'in'):
+                    sn = sn.replace('in', 'ine')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+                # if(sn[-1:] == 'e'):
+                #     sn = sn.replace('e', 'esse')
+                #     hv = nlp(sn)
+                #     for v in hv:
+                #         if(v.has_vector):
+                #             s1 = s1.replace(dn, sn)
+                #     continue
                 
-                    if(sn[-3:] == 'eur'):
-                        sn = sn.replace('eur', 'euse')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                    if(sn[-3:] == 'ien'):
-                        sn = sn.replace('ien', 'ienne')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                #Plural endings
-                    if(sn[-3:] == 'ons'):
-                        sn = sn.replace('ons', 'onnes')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                    if(sn[-3:] == 'ins'):
-                        sn = sn.replace('ins', 'ines')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                    if(sn[-2:] == 'es'):
-                        sn = sn.replace('es', 'esses')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-
-                    if(sn[-3:] == 'ers'):
-                        sn = sn.replace('ers', 'ères')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
-                    
-                    if(sn[-5:] == 'teurs'):
-                        sn = sn.replace('teurs', 'trices')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+                if(sn[-2:] == 'er'):
+                    sn = sn.replace('er', 'ère')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
                 
-                    if(sn[-4:] == 'eurs'):
-                        sn = sn.replace('eurs', 'euses')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+                if(sn[-4:] == 'teur'):
+                    sn = sn.replace('teur', 'trice')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+                
+                if(sn[-3:] == 'eur'):
+                    sn = sn.replace('eur', 'euse')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
 
-                    if(sn[-4:] == 'iens'):
-                        sn = sn.replace('iens', 'iennes')
-                        hv = nlp(sn)
-                        for v in hv:
-                            if(v.has_vector):
-                                s1 = s1.replace(dn, sn)
-                        continue
+                if(sn[-3:] == 'ien'):
+                    sn = sn.replace('ien', 'ienne')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+            #Plural endings
+                if(sn[-3:] == 'ons'):
+                    sn = sn.replace('ons', 'onnes')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+                if(sn[-3:] == 'ins'):
+                    sn = sn.replace('ins', 'ines')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+                if(sn[-2:] == 'es'):
+                    sn = sn.replace('es', 'esses')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+                if(sn[-3:] == 'ers'):
+                    sn = sn.replace('ers', 'ères')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+                
+                if(sn[-5:] == 'teurs'):
+                    sn = sn.replace('teurs', 'trices')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+            
+                if(sn[-4:] == 'eurs'):
+                    sn = sn.replace('eurs', 'euses')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
+
+                if(sn[-4:] == 'iens'):
+                    sn = sn.replace('iens', 'iennes')
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
 
     #print(s1,s2)
     
@@ -208,7 +208,11 @@ def gender_corrector(trText, orText):
                 
                 if(sn == 'le'):
                     sn = sn.replace('le', 'la')
-                    s1 = s1.replace(dn, sn)
+                    hv = nlp(sn)
+                    for v in hv:
+                        if(v.has_vector):
+                            s1 = s1.replace(dn, sn)
+                    continue
                     
                 if(sn == 'un'):
                     sn = sn.replace('un', 'une')
@@ -232,9 +236,25 @@ def gender_corrector(trText, orText):
                             if(v.has_vector):
                                 s1 = s1.replace(dn, sn)
                         continue
+
+                    if(sn[-5:] == 'teurs'):
+                        sn = sn.replace('teurs', 'trices')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue 
                     
                     if(sn[-3:] == 'ien'):
                         sn = sn.replace('ien', 'ienne')
+                        hv = nlp(sn)
+                        for v in hv:
+                            if(v.has_vector):
+                                s1 = s1.replace(dn, sn)
+                        continue
+
+                    if(sn[-4:] == 'iens'):
+                        sn = sn.replace('iens', 'iennes')
                         hv = nlp(sn)
                         for v in hv:
                             if(v.has_vector):
@@ -415,8 +435,7 @@ def gender_corrector(trText, orText):
                         for v in hv:
                             if(v.has_vector):
                                 s1 = s1.replace(dn, sn)
-                        continue
-
+                        continue       
 
 
     print(s1 + ' ' + s2)
