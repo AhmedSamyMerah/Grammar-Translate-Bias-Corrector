@@ -8,6 +8,8 @@ from spacy.lookups import Lookups
 nlp = spacy.load("fr_core_news_lg")
 ennlp = spacy.load("en_core_web_sm")
 
+#Implementation of using the decision tree built by weka
+#We use a model to indentify the category of the sentence and then call correction functions based on those
 def sentTagSimInt(trText, orText):
     p_s = ""
     s = ""
@@ -45,14 +47,14 @@ def sentTagSimInt(trText, orText):
             index = n.i
             break
     
-    for d in doc[index-1:index]:
+    for d in doc[index-1:index] or doc[index-2:index]:
         #print(d.text)
         if('DET' in d.tag_):
             d_s=d
             break
     
-    for a in doc:
-        if('ADJ' in a.tag_ and 'ROOT' in a.dep_):
+    for a in doc[index:index+3] or doc[index-1:index]:
+        if('ADJ' in a.tag_):
             a_s = a
             break
 
@@ -76,7 +78,7 @@ def sentTagSimInt(trText, orText):
     if(sa in s1):
         s1 = s1.replace(sa, new_a)
 
-    print(s1 + s2)
+    print(s1 + " " + s2)
 
     # count = doc.count_by(spacy.attrs.IDS['POS'])
     # print(count)
@@ -277,6 +279,14 @@ def adjectiveCorrection(a_s):
                 corrected_a_s=sn
         #continue 
 
+    if(sn[-1:] == 'x'):
+        sn = sn.replace('x', 'se')
+        hv = nlp(sn)
+        for v in hv:
+            if(v.has_vector):
+                corrected_a_s=sn
+        #continue
+
     if(sn[-3:] == 'eux'):
         sn = sn.replace('eux', 'eille')
         hv = nlp(sn)
@@ -420,14 +430,6 @@ def adjectiveCorrection(a_s):
             if(v.has_vector):
                 corrected_a_s=sn
         #continue 
-
-    if(sn[-1:] == 'x'):
-        sn = sn.replace('x', 'se')
-        hv = nlp(sn)
-        for v in hv:
-            if(v.has_vector):
-                corrected_a_s=sn
-        #continue
 
     if(sn[-1:] == 'f'):
         sn = sn.replace('f', 've')

@@ -136,17 +136,22 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 
-translate_text(text="the wolf ate the deer. she is drunk because it was heavy.", project_id="ancient-lattice-288217")
-#translate_text(text="the player is mean. she was cool.", project_id="ancient-lattice-288217")
-# translate_text(text="this boss is nice with the hard cousin. she was cool.", project_id="ancient-lattice-288217")
+#translate_text(text="the wicked wolf ate the big deer. she's drunk because it was heavy.", project_id="ancient-lattice-288217")
+#translate_text(text="the player was nice. she was cool.", project_id="ancient-lattice-288217")
+#translate_text(text="this boss is nice with the hard cousin. she was cool.", project_id="ancient-lattice-288217")
 
-#translate_text(text="at the conference, the boss was beautiful. her work was cool", project_id="ancient-lattice-288217")
+#translate_text(text="at the conference, the boss was nervous. her work was amazing", project_id="ancient-lattice-288217")
 #translate_text(text="the boss is mean, the cousin was there too. her work was cool, but her cousin was amazing too.", project_id="ancient-lattice-288217")
 
 #translate_text(text="the boss is kind, even when working with my older cousin. she fixed all the issues we were facing.", project_id="ancient-lattice-288217")
 #translate_text(text="the thief was really fast when trying to catch the cashier. she caught him fast.", project_id="ancient-lattice-288217")
 
-# translate_text(text="the actor is Algerian, but the friend is tunisian. her work ethic is good.", project_id="ancient-lattice-288217")
+translate_text(text="the big worker ate the boss's dinner. she got caught by her.", project_id="ancient-lattice-288217")
+
+#translate_text(text="the actor is Algerian, but the friend is tunisian. her work ethic is good.", project_id="ancient-lattice-288217")
+
 # translate_text(text="the actors are provocative. she has a good personality.", project_id="ancient-lattice-288217")
-# translate_text(text="the cousin is short. she leads the family.", project_id="ancient-lattice-288217")
+
+#translate_text(text="the cousin is short. she leads the family.", project_id="ancient-lattice-288217")
+
 # translate_text(text="my dog is elegant. her style is good.", project_id="ancient-lattice-288217")
