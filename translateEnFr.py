@@ -108,11 +108,11 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
             sentTagSimInt(cleanStr, text)
     
     if(440 in num_depEn):
-        if(num_depEn[440]>1):
+        if(num_depEn[440]>=2):
             sentTagComplex(cleanStr, text)
     
     if(95 in num_posFr):
-        if(num_posFr[95]>1):
+        if(num_posFr[95]>=2):
             sentTagComplex(cleanStr, text)
 
     #sends for processing
@@ -135,23 +135,23 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     # for translation in response.translations:
     #    print("Translated text: {}".format(translation.translated_text))
 
+# SIMPLE CASES
+# translate_text(text="the player was nice. she was cool.", project_id="ancient-lattice-288217")
+# translate_text(text="this dog is elegant. her style is good.", project_id="ancient-lattice-288217")
+# translate_text(text="a cousin is very jealous. he holds grudges.", project_id="ancient-lattice-288217")
+# translate_text(text="that boss has many jobs. she works a lot.", project_id="ancient-lattice-288217")
 
-#translate_text(text="the wicked wolf ate the big deer. she's drunk because it was heavy.", project_id="ancient-lattice-288217")
-#translate_text(text="the player was nice. she was cool.", project_id="ancient-lattice-288217")
-#translate_text(text="this boss is nice with the hard cousin. she was cool.", project_id="ancient-lattice-288217")
+#INTERMEDIATE
+# translate_text(text="at the conference, the butcher was nervous. her work speaks to me.", project_id="ancient-lattice-288217")
+# translate_text(text="the actor is Algerian, but the friend is tunisian. her acting skills were amazing.", project_id="ancient-lattice-288217")
+# translate_text(text="this brewer is crazy with the hard headed cousin. she was patient.", project_id="ancient-lattice-288217")
+# translate_text(text="the driver was out of the city. he had to spend time with family.", project_id="ancient-lattice-288217")
 
-#translate_text(text="at the conference, the boss was nervous. her work was amazing", project_id="ancient-lattice-288217")
-#translate_text(text="the boss is mean, the cousin was there too. her work was cool, but her cousin was amazing too.", project_id="ancient-lattice-288217")
-
-#translate_text(text="the boss is kind, even when working with my older cousin. she fixed all the issues we were facing.", project_id="ancient-lattice-288217")
+#COMPLEX
 #translate_text(text="the thief was really fast when trying to catch the cashier. she caught him fast.", project_id="ancient-lattice-288217")
+translate_text(text="the doctor is kind, even when working with the baron. he fixed all the issues she was facing.", project_id="ancient-lattice-288217")
+#translate_text(text="the wicked wolf ate the big deer. he was stuffed because he was heavy.", project_id="ancient-lattice-288217")
+#translate_text(text="the big worker ate the explorator. she got caught by her.", project_id="ancient-lattice-288217")
 
-translate_text(text="the big worker ate the boss's dinner. she got caught by her.", project_id="ancient-lattice-288217")
-
-#translate_text(text="the actor is Algerian, but the friend is tunisian. her work ethic is good.", project_id="ancient-lattice-288217")
-
-# translate_text(text="the actors are provocative. she has a good personality.", project_id="ancient-lattice-288217")
-
-#translate_text(text="the cousin is short. she leads the family.", project_id="ancient-lattice-288217")
-
-# translate_text(text="my dog is elegant. her style is good.", project_id="ancient-lattice-288217")
+#translate_text(text="that driver is mean with the worker. he hurt her feelings.", project_id="ancient-lattice-288217")
+#translate_text(text="the actors are provocative. she has a good personality.", project_id="ancient-lattice-288217")

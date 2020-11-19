@@ -14,6 +14,7 @@ def sentTagComplex(trText, orText):
         if("her" not in orText):
             return print(trText)
     
+    #attributes of decision tree
     p_s = None
     p_c = None
     s = ""
@@ -26,11 +27,25 @@ def sentTagComplex(trText, orText):
     indexc = None
 
     doc = nlp(trText)
+    enDoc = ennlp(orText)
 
     sents = list(doc.sents)
+    enSents = list(enDoc.sents)
     ds2 = sents[1]
+    enDs2 = enSents[1]
     parr = []
 
+    # for ep in enDs2:
+    #     if('PRON' in ep.tag_):
+    #         if("her" == ep.text):
+    #             parr.append(ep)
+    #             #p_s = parr[0]
+    #             continue
+    #         elif('her' == ep.text or 'him' == ep.text):
+    #             parr.append(ep)
+    #             #p_c = parr[1]
+
+    #pronoun check that appends to array
     for p in ds2:
         if('PRON' in p.tag_):
             if("elle" == p.text):
@@ -49,12 +64,14 @@ def sentTagComplex(trText, orText):
 
     print(parr)
 
+    #First element of the array is prnoun of subject and second is pronoun of object
     if(len(parr)>1):
         p_s = parr[0]
         p_c = parr[1]
     elif(len(parr)==1):
         p_s=parr[0]
 
+    #Getting the attributes
     for n in doc:
         if('subj' in n.dep_ and ('NOUN' and 'Gender=Masc' in n.tag_)):
             s = n
@@ -71,21 +88,23 @@ def sentTagComplex(trText, orText):
             a_s = a
             break
 
-    for n in doc:
-        if('obj' in n.dep_):
-            c = n
-            indexc = n.i
+    for nc in doc:
+        if(('obj' in nc.dep_ or 'obl' in nc.dep_) and ('NOUN' and 'Gender=Masc' in nc.tag_)):
+            c = nc
+            indexc = nc.i
             break
+    
+    if(indexc):
+        for d in doc[indexc-3:indexc]:
+            if('DET' in d.tag_):
+                d_c=d
+                break
 
-    for d in doc[indexc-2:indexc]:
-        if('DET' in d.tag_):
-            d_c=d
-            break
-
-    for a in doc[indexc-1:indexc+2]:
-        if('ADJ' in a.tag_):
-            a_c = a
-            break
+    if(indexc):
+        for a in doc[indexc-3:indexc+2]:
+            if('ADJ' in a.tag_):
+                a_c = a
+                break
 
     print(p_s)
     print(p_c)
@@ -96,15 +115,17 @@ def sentTagComplex(trText, orText):
     print(a_s)
     print(a_c)
 
+    s1 = str(sents[0])
+
     if('Gender=Fem' in p_s.tag_):
-        print('brih')
+        #print('brih')
         #process s, ds, as
         new_s = subjectObjectCorrectiion(s)
         new_ds = determinentCorrection(d_s)
         new_as = adjectiveCorrection(a_s)
         
         sents = list(doc.sents)
-        s1 = str(sents[0])
+        #s1 = str(sents[0])
         s2 = str(sents[1])
 
         ss = str(s)
@@ -118,7 +139,7 @@ def sentTagComplex(trText, orText):
         if(sa in s1):
             s1 = s1.replace(sa, new_as)
 
-        print(s1 + " " + s2)
+        #print(s1 + " " + s2)
     
     if(p_c != None):
         if('Gender=Fem' in p_c.tag_):
@@ -127,7 +148,7 @@ def sentTagComplex(trText, orText):
             new_dc = determinentCorrection(d_c)
             new_ac = adjectiveCorrection(a_c)
             sents = list(doc.sents)
-            s1 = str(sents[0])
+            #s1 = str(sents[0])
             s2 = str(sents[1])
 
             ss = str(c)
@@ -141,7 +162,8 @@ def sentTagComplex(trText, orText):
             if(sa in s1):
                 s1 = s1.replace(sa, new_ac)
 
-            print(s1 + " " + s2)
+            #print(s1 + " " + s2)
+    print(s1 + " " + s2)
 
 def subjectObjectCorrectiion(s):
     corrected=""
