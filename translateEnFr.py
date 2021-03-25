@@ -136,22 +136,22 @@ def translate_text(text="YOUR_TEXT_TO_TRANSLATE", project_id="YOUR_PROJECT_ID"):
     #    print("Translated text: {}".format(translation.translated_text))
 
 # SIMPLE CASES
-# translate_text(text="the player was nice. she was cool.", project_id="ancient-lattice-288217")
-# translate_text(text="this dog is elegant. her style is good.", project_id="ancient-lattice-288217")
-# translate_text(text="a cousin is very jealous. he holds grudges.", project_id="ancient-lattice-288217")
-# translate_text(text="that boss has many jobs. she works a lot.", project_id="ancient-lattice-288217")
+# translate_text(text="the player was nice. she was cool.", project_id="")
+# translate_text(text="this dog is elegant. her style is good.", project_id="")
+# translate_text(text="a cousin is very jealous. he holds grudges.", project_id="")
+translate_text(text="that boss has many jobs. she works a lot.", project_id="")
 
 #INTERMEDIATE
-# translate_text(text="at the conference, the butcher was nervous. her work speaks to me.", project_id="ancient-lattice-288217")
-# translate_text(text="the actor is Algerian, but the friend is tunisian. her acting skills were amazing.", project_id="ancient-lattice-288217")
-# translate_text(text="this brewer is crazy with the hard headed cousin. she was patient.", project_id="ancient-lattice-288217")
-# translate_text(text="the driver was out of the city. he had to spend time with family.", project_id="ancient-lattice-288217")
+# translate_text(text="at the conference, the butcher was nervous. her work speaks to me.", project_id="")
+# translate_text(text="the actor is Algerian, but the friend is tunisian. her acting skills were amazing.", project_id="")
+translate_text(text="this brewer is crazy with the hard headed cousin. she was patient.", project_id="")
+# translate_text(text="the driver was out of the city. he had to spend time with family.", project_id="")
 
 #COMPLEX
-#translate_text(text="the thief was really fast when trying to catch the cashier. she caught him fast.", project_id="ancient-lattice-288217")
-translate_text(text="the doctor is kind, even when working with the baron. he fixed all the issues she was facing.", project_id="ancient-lattice-288217")
-#translate_text(text="the wicked wolf ate the big deer. he was stuffed because he was heavy.", project_id="ancient-lattice-288217")
-#translate_text(text="the big worker ate the explorator. she got caught by her.", project_id="ancient-lattice-288217")
+#translate_text(text="the thief was really fast when trying to catch the cashier. she caught him fast.", project_id="")
+translate_text(text="the doctor is kind, even when working with the baron. he fixed all the issues she was facing.", project_id="")
+#translate_text(text="the wicked wolf ate the big deer. he was stuffed because he was heavy.", project_id="")
+#translate_text(text="the big worker ate the explorator. she got caught by her.", project_id="")
 
-#translate_text(text="that driver is mean with the worker. he hurt her feelings.", project_id="ancient-lattice-288217")
-#translate_text(text="the actors are provocative. she has a good personality.", project_id="ancient-lattice-288217")
+#translate_text(text="that driver is mean with the worker. he hurt her feelings.", project_id="")
+#translate_text(text="the actors are provocative. she has a good personality.", project_id="")
